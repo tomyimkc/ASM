@@ -5,7 +5,6 @@ import pandas as pd
 import numpy as np
 import datetime
 import time
-import matplotlib.pyplot as plt
 import statistics as stat
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
