@@ -6,17 +6,11 @@ import numpy as np
 import datetime
 import time
 import statistics as stat
-from st_aggrid import AgGrid
-from st_aggrid.grid_options_builder import GridOptionsBuilder
-from st_aggrid.shared import JsCode
-from st_aggrid import GridUpdateMode, DataReturnMode
 
 # import ib_data
 # from Stock_Data import get_specific_data
 # from plot_df import plot
 # from Volatility_sim import check_history
-
-profile_df=pd.read_csv(f'{path_data}core{sep}Profile_Summary.csv')
 
 def sim(df,start_index,end_index):
                         progress_bar = st.progress(0)
