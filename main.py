@@ -51,10 +51,7 @@ elif option == "Data Check":
         with st.expander("DF detail:"):
             select_df_status=st.checkbox('Simulation: volatility')
             if select_df_status:
-                history_df=pd.read_csv(f"{path_data}sim{sep}{ticker}_history.csv")
                 all_df_status=st.checkbox('All Data inside DF')
-                if all_df_status:
-                    nice_grid(history_df)
                 specific_df_status=st.checkbox('Simulation')
                 if specific_df_status:
                     simulation_range_status=st.checkbox('Simulation between a range of data')
