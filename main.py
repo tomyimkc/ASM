@@ -12,107 +12,6 @@ import statistics as stat
 # from plot_df import plot
 # from Volatility_sim import check_history
 
-def sim(df,start_index,end_index):
-                        progress_bar = st.progress(0)
-                        status_text = st.empty()
-                        figure,axis = plt.subplots(4,1,figsize=(9,9))
-                        
-                        # st.dataframe(df)
-                        x_date_array=[datetime.datetime.strptime(d,"%Y-%m-%d %H:%M:%S") for d in df['date']]
-                        # st.write(x_date_array)
-                        x_array=[]
-                        open_array=[]
-                        high_array=[]
-                        low_array=[]
-                        close_array=[]
-                        HL_array=[]
-                        volume_array=[]
-                        B_array=[]
-                        S_array=[]
-                        T_array=[]
-                        sd_array=[]
-                        mean_array=[]
-
-                        for i in range(start_index,end_index):
-                    
-                            x_array.append(x_date_array[i-start_index])
-                            open_array.append(df['open'][i])
-                            high_array.append(df['high'][i])
-                            low_array.append(df['low'][i])
-                            close_array.append(df['close'][i])
-                            HL_array.append(df['HL'][i])
-                            volume_array.append(df['volume'][i])
-                            if i >start_index:
-                                sd=stat.stdev(HL_array[-60:])
-                                sd_array.append(sd)
-                                mean=stat.mean(HL_array[-60:])
-                                mean_array.append(mean)
-                            else:
-                                sd=df['HL'][i]*0.341
-                                sd_array.append(sd)
-                                mean=df['HL'][i]/2
-                                mean_array.append(mean)
-
-
-                            print ('mean:',mean,'sd:',sd)
-
-                            plt.cla()
-                            axis[0].plot(x_array, open_array,label='open'if         i == start else "",color='g')
-                            axis[0].plot(x_array, high_array,label='high'if         i == start else "",color='r')
-                            axis[0].plot(x_array, low_array,label='low'if i         == start else "",color='m')
-                            axis[0].plot(x_array, close_array,      label='close'if i == start else "",color='b')
-                            axis[1].plot(x_array, HL_array,label='HL'if i ==        start else "",color='r')
-                            axis[2].plot(x_array, mean_array,label='mean'if         i == start else "",color='r')
-                            axis[2].plot(x_array, sd_array,label='sd'if i ==        start else "",color='g')
-                            axis[3].plot(x_array, volume_array,     label='volume',color='g')
-
-                            # plt.title(str(i))
-                            # axis[0].legend()
-                            # axis[1].legend()
-                            # axis[2].legend()
-                            # axis[3].legend()
-
-
-                        mean_mean=stat.mean(mean_array)
-                        mean_sd=stat.stdev(mean_array)
-                        sd_mean=stat.mean(sd_array)
-                        sd_sd=stat.stdev(sd_array)
-                        volume_mean=stat.mean(volume_array)
-                        volume_sd=stat.stdev(volume_array)
-                        st.pyplot(figure)
-                        st.write('The mean of mean_array=',mean_mean)
-                        st.write('The sd of mean_array=',mean_sd)
-                        st.write('The mean of sd_array=',sd_mean)
-                        st.write('The sd of sd_array=',sd_sd)
-                        st.write('The mean of volume_array=',volume_mean)
-                        st.write('The sd of volume_array=',volume_sd)
-                        sim_occur_in_HL_time=sum(mean_mean+sd_mean < i for i in HL_array)
-                        st.write("Time of Simulation Range within HL frame",sim_occur_in_HL_time)
-                        # count the times of uptrending with range greater than sim time
-
-def nice_grid(df):
-    
-
-    gb = GridOptionsBuilder.from_dataframe(df)
-    # enables pivoting on all columns, however i'd need to  change ag grid to allow export of pivoted/grouped data,  however it select/filters groups
-    gb.configure_default_column(enablePivot=True,   enableValue=True, enableRowGroup=True)
-    gb.configure_selection(selection_mode="multiple",   use_checkbox=True)
-    gb.configure_side_bar()  # side_bar is clearly a typo :)    should by sidebar
-    gridOptions = gb.build()
-
-    
-
-    response = AgGrid(
-        df,
-        gridOptions=gridOptions,
-        enable_enterprise_modules=True,
-        update_mode=GridUpdateMode.MODEL_CHANGED,
-        data_return_mode=DataReturnMode.FILTERED_AND_SORTED,
-        fit_columns_on_grid_load=False,
-    )
-
-    # st.table(df)
- 
 
 def convert(date_time):
     format='%Y-%m-%d'
@@ -144,7 +43,7 @@ if option=="Index":
     # st.dataframe(df)
 elif option == "Data Check":
     ticker=st.text_input("Text Box",max_chars=5)
-    ticker_array=profile_df['Ticker'].tolist()
+    ticker_array=['TSLA','AMD']
     ticker=st.selectbox('Choose your profile ticker',ticker_array)
     checkbox_status=st.checkbox('Check Ticker')
     if not ticker == '' and checkbox_status:
