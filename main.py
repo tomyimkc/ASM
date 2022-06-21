@@ -38,6 +38,7 @@ option=st.sidebar.selectbox("Function:",("Index","Data Check","wallstreetbets"))
 if option=="Index":
     # ticker="TSLA"
     st.subheader("This is the Index page")
+    ticker=st.text_input("Text Box",max_chars=5)
     # st.subheader(ticker)
     # df=pd.read_csv(f"{path_data}Sim{sep}{ticker}_history.csv")
     # st.dataframe(df)
