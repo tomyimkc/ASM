@@ -45,6 +45,7 @@ if option=="Index":
     st.header(ticker)
 
     df=pd.read_csv('./data/test.csv')
+    
     st.dataframe(df)
     
     # st.subheader(ticker)
