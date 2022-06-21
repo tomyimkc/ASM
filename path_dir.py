@@ -1,6 +1,6 @@
 server=0
 if server==0:
-    path='E:\Tom_Utopia\Accounting\\'
+    path='C:\\Users\\tomyi\Documents\GitHub\ASM\\'
     sep='\\'
 elif server==1:
     #this is for Mac

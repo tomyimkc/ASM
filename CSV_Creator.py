@@ -71,7 +71,7 @@ if __name__ == '__main__':
                 print('A new profile will be created...')
                 name=input('What is the name of the CSV you would like to create?')
                 folder=input('What is the folder name of the CSV being put in?')
-                if os.path.exists(f'E:\Tom_Utopia\Accounting\{folder}'):
+                if os.path.exists(f'{path}{sep}{folder}'):
                     print('Folder exists')
                     nos_column=int(input('How many Columes are in the CSV?'))
                     column_array=[]
