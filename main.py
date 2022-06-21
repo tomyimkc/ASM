@@ -44,7 +44,7 @@ if option=="Index":
     # if st.button('Add'):
     st.header(ticker)
 
-    df=pd.read_csv(f'.{sep}data{sep}test.csv')
+    df=pd.read_csv('./data/test.csv')
     st.dataframe(df)
     
     # st.subheader(ticker)
