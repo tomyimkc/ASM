@@ -41,8 +41,12 @@ if option=="Index":
     # ticker="TSLA"
     st.subheader("This is the Index page")
     ticker=st.text_input("Text Box",max_chars=5)
-    df=pd.read_csv(f'{path}{sep}data{sep}test.csv')
+    # if st.button('Add'):
+    st.header(ticker)
+
+    df=pd.read_csv(f'.{sep}data{sep}test.csv')
     st.dataframe(df)
+    
     # st.subheader(ticker)
     # df=pd.read_csv(f"{path_data}Sim{sep}{ticker}_history.csv")
     # st.dataframe(df)
