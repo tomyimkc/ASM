@@ -6,6 +6,8 @@ import numpy as np
 import datetime
 import time
 import statistics as stat
+from path_dir import path,sep
+
 
 # import ib_data
 # from Stock_Data import get_specific_data
@@ -39,6 +41,8 @@ if option=="Index":
     # ticker="TSLA"
     st.subheader("This is the Index page")
     ticker=st.text_input("Text Box",max_chars=5)
+    df=pd.read_csv(f'{path}{sep}data{sep}test.csv')
+    st.dataframe(df)
     # st.subheader(ticker)
     # df=pd.read_csv(f"{path_data}Sim{sep}{ticker}_history.csv")
     # st.dataframe(df)
